@@ -76,7 +76,7 @@ public class NetUtil {
         builder.cookieJar(new JavaNetCookieJar(cookieHandler));
 
 
-        OkHttpClient okHttpClient = builder.readTimeout(8000, TimeUnit.MILLISECONDS).connectTimeout(8000, TimeUnit.MILLISECONDS).build();
+        OkHttpClient okHttpClient = builder.readTimeout(7000, TimeUnit.MILLISECONDS).connectTimeout(7000, TimeUnit.MILLISECONDS).build();
 
         //生成buider
         retrofit=new Retrofit.Builder()

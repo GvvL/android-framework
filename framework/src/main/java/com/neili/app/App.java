@@ -7,6 +7,8 @@ import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.os.Bundle;
 
+import com.neili.app.MyCrashHandler;
+
 
 /**
  * 主程序
@@ -35,25 +37,7 @@ public class App extends Application implements ActivityLifecycleCallbacks{
 		MyCrashHandler handler = MyCrashHandler.getInstance();
 		handler.init(getApplicationContext());
 		registerActivityLifecycleCallbacks(this);
-		
 	}
-
-
-
-
-
-	
-
-	
-
-	
-
-
-
-
-
-
-
 
 
 
@@ -62,7 +46,7 @@ public class App extends Application implements ActivityLifecycleCallbacks{
 	 * 单例
 	 * @return 
 	 */
-	public static App getInstance() {		
+	public static App getInstance() {
 		 return instance;
 	}
 	

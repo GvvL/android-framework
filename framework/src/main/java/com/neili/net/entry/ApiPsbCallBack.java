@@ -1,16 +1,13 @@
 package com.neili.net.entry;
 
 import android.content.Context;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
-
-
 import com.neili.net.progress.ProgressCancelListener;
 import com.neili.net.progress.ProgressDialogHandler;
-
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
-
 import rx.Subscriber;
 
 /**
@@ -41,6 +38,16 @@ public abstract class ApiPsbCallBack<T extends ResponseDataBase> extends Subscri
             mProgressDialogHandler = null;
         }
     }
+    private void errorProgressDialog(String str){
+        if (mProgressDialogHandler != null) {
+            Message message = mProgressDialogHandler.obtainMessage(ProgressDialogHandler.ERROR_PROGRESS_DIALOG);
+            if(str.trim().length()>0) message.obj=str;
+            message.sendToTarget();
+        }
+    }
+    private void errorProgressDialog(){
+        errorProgressDialog("");
+    }
 
     /**
      * 订阅开始时调用
@@ -56,7 +63,7 @@ public abstract class ApiPsbCallBack<T extends ResponseDataBase> extends Subscri
      */
     @Override
     public void onCompleted() {
-        dismissProgressDialog();
+//        dismissProgressDialog();
     }
 
     /**
@@ -67,13 +74,12 @@ public abstract class ApiPsbCallBack<T extends ResponseDataBase> extends Subscri
     @Override
     public void onError(Throwable e) {
         if (e instanceof SocketTimeoutException) {
-            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
+            errorProgressDialog("网络状态异常");
         } else if (e instanceof ConnectException) {
-            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
+            errorProgressDialog("网络状态异常");
         } else {
-            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            errorProgressDialog();
         }
-        dismissProgressDialog();
         e.printStackTrace();
         error(500, e.getMessage());
     }
@@ -87,8 +93,10 @@ public abstract class ApiPsbCallBack<T extends ResponseDataBase> extends Subscri
     public void onNext(T t) {
         int code=t.getCode();
         if(code>=200 && code<300){
+            dismissProgressDialog();
             success(t);
         }else{
+            errorProgressDialog(t.getMsg());
             Log.e("数据返回错误:","错误信息:"+t.getCode()+t.getMsg());
             error(code, t.getMsg());
         }
@@ -100,6 +108,7 @@ public abstract class ApiPsbCallBack<T extends ResponseDataBase> extends Subscri
     @Override
     public void onCancelProgress() {
         if (!this.isUnsubscribed()) {
+            Toast.makeText(context,"取消..",Toast.LENGTH_SHORT).show();
             this.unsubscribe();
         }
     }
