@@ -8,14 +8,20 @@ import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.neili.utils.eventlife.IComponentContainer;
+import com.neili.utils.eventlife.LifeCycleComponent;
+import com.neili.utils.eventlife.LifeCycleComponentManager;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 
-public class ActP<T extends ViewDelegate> extends AppCompatActivity{
+public class ActP<T extends ViewDelegate> extends AppCompatActivity implements IComponentContainer{
     protected T viewDelegate;
     protected boolean transbar=false;
-
+    private boolean mFirstResume=true;
+    //生命周期条用
+    private LifeCycleComponentManager mComponentContainer = new LifeCycleComponentManager();
 
     public ActP() {
 
@@ -58,7 +64,7 @@ public class ActP<T extends ViewDelegate> extends AppCompatActivity{
 
     }
 
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -91,6 +97,7 @@ public class ActP<T extends ViewDelegate> extends AppCompatActivity{
         viewDelegate.deinitWidget();
         viewDelegate = null;
         super.onDestroy();
+        mComponentContainer.onDestroy();
     }
     //    protected abstract Class<T> getDelegateClass();
     public void makeBarTranslucent(){
@@ -106,4 +113,30 @@ public class ActP<T extends ViewDelegate> extends AppCompatActivity{
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!mFirstResume) {
+            onBack();
+        }
+        if (mFirstResume) {
+            mFirstResume = false;
+        }
+    }
+    public void onBack() {
+        mComponentContainer.onBecomesVisibleFromTotallyInvisible();
+    }
+
+    @Override
+    public void addComponent(LifeCycleComponent component) {
+        mComponentContainer.addComponent(component);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mComponentContainer.onBecomesTotallyInvisible();
+    }
+
 }
