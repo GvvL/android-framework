@@ -7,6 +7,7 @@ import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.os.Bundle;
 
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.neili.app.MyCrashHandler;
 
 
@@ -37,6 +38,7 @@ public class App extends Application implements ActivityLifecycleCallbacks{
 		MyCrashHandler handler = MyCrashHandler.getInstance();
 		handler.init(getApplicationContext());
 		registerActivityLifecycleCallbacks(this);
+		TypefaceProvider.registerDefaultIconSets();
 	}
 
 

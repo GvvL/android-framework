@@ -56,6 +56,8 @@ dependencies {
 //    compile 'com.ogaclejapan.smarttablayout:utils-v13:1.6.1@aar'
     //eventbus
     compile 'de.greenrobot:eventbus:2.4.0'
+    //组件库
+    compile 'com.beardedhen:androidbootstrap:2.3.0'
 
     //工具
 //    compile 'com.thefinestartist:utils:0.9.5'

@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一个 {fa_thumbs_o_up}"
+        app:bootstrapBrand="success"
+        app:bootstrapHeading="h3"
+        app:roundedCorners="true"
+        />
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:id="@+id/example_fa_text_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aa"
+        android:background="#ccc"
+        android:padding="3dp"
+        android:textSize="14sp"
+        app:bootstrapBrand="danger"
+        app:bootstrapText="{fa_wrench}看书"
+        />
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aa"
+        android:padding="3dp"
+        app:bootstrapBrand="success"
+        app:bootstrapText="{fa_android}{fa-bluetooth}{fa_apple}"
+        app:fontAwesomeIcon="fa_android"
+        />
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        app:bootstrapBrand="success"
+        app:bootstrapText="I {fa_heart} {fa_github}"
+        app:fontAwesomeIcon="fa_android"
+        tools:ignore="SpUsage"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapAlert
+        android:id="@+id/static_alert_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:bootstrapBrand="primary"
+        app:dismissible="true"
+        app:messageText="This is a short alert."
+        app:strongText="Great!"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapBadge
+        android:id="@+id/lonely_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:bootstrapSize="sm"
+        app:badgeText="I am a Badge!!!"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:typicon="ty_coffee"
+        app:bootstrapBrand="warning"
+        app:roundedCorners="true"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danger"
+        app:bootstrapBrand="danger"
+        app:roundedCorners="true"
+        app:showOutline="true"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+        android:id="@+id/bcircle_theme_change_example"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_launcher"
+        app:bootstrapBrand="success"
+        app:hasBorder="true"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+        android:id="@+id/example_progress_striped_animated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:animated="true"
+        app:bootstrapBrand="warning"
+        app:bootstrapProgress="78"
+        app:striped="true"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bootstrapBrand="success"
+        app:bootstrapProgress="50"
+        app:bootstrapSize="md"
+        app:striped="true"
+        />
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.neili.example;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.beardedhen.androidbootstrap.api.attributes.BootstrapBrand;
 import com.neili.framework.R;
 
 /**
@@ -24,6 +26,58 @@ public class TablayoutFrg extends Fragment {
         TextView tv= (TextView) view.findViewById(R.id.textView);
 
         tv.setText(getArguments().getString("title","aa"));
+        new BootstrapBrand(){
+
+            @Override
+            public int defaultFill(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int defaultEdge(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int defaultTextColor(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int activeFill(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int activeEdge(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int activeTextColor(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int disabledFill(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int disabledEdge(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int disabledTextColor(Context context) {
+                return 0;
+            }
+
+            @Override
+            public int getColor() {
+                return 0;
+            }
+        };
         return view;
     }
 }
